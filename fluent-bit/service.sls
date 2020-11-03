@@ -16,3 +16,5 @@ configure-{{ bit.pkg }}-service:
     - watch:
       - file: {{ bit.pkg }}-config
       - file: {{ bit.pkg }}-parsers
+    - require:
+      - file: configure-{{ bit.pkg }}-service
