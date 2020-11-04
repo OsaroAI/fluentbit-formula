@@ -3,11 +3,13 @@
 
 {% from "fluent-bit/map.jinja" import bit with context %}
 
+{% set os_distrubition = grains['lsb_distrib_release'] %}
+
+
 fluent_pkgrepo:
   pkgrepo.managed:
     - humanname: fluent-bionic 
-    # TODO (akhattar): add conditional for checking ubuntu version
-    - name: deb https://packages.fluentbit.io/ubuntu/xenial xenial main
+    - name: deb https://packages.fluentbit.io/ubuntu/{{ os_distrubition }} {{ os_distrubition }} main
     - key_url: https://packages.fluentbit.io/fluentbit.key
     - clean_file: True
     - file: /etc/apt/sources.list.d/fluent.list
