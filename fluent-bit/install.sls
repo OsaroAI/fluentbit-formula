@@ -3,12 +3,12 @@
 
 {% from "fluent-bit/map.jinja" import bit with context %}
 
-{% set os_distrubition = grains['lsb_distrib_release'] %}
+{% set os_distrubition = grains['lsb_distrib_codename'] %}
 
 
 fluent_pkgrepo:
   pkgrepo.managed:
-    - humanname: fluent-bionic 
+    - humanname: {{ os_distrubition }}
     - name: deb https://packages.fluentbit.io/ubuntu/{{ os_distrubition }} {{ os_distrubition }} main
     - key_url: https://packages.fluentbit.io/fluentbit.key
     - clean_file: True
