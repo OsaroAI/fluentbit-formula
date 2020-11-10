@@ -39,7 +39,7 @@ that differ from whats in defaults.yaml
 
 {## Merge in bit:lookup pillar ##}
 {% set bit = salt['pillar.get'](
-        'fluent',
+        'fluent_bit',
         default=default_settings.fluent_bit,
         merge=True
     )
