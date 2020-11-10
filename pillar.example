@@ -1,4 +1,4 @@
-fluent_bit:
+fluent:
   # possible options: td-agent-bit, fluent-bit
   pkg: td-agent-bit
   # optional for fluent-bit
