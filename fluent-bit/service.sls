@@ -13,7 +13,7 @@ configure-{{ bit.pkg }}-service:
   {% if pillar.get('fluent_bit', {}).get('enable', false) %}
   service.running:
     - name: {{ bit.pkg }}
-    - enable: True
+    - enable: {{ pillar.get('fluent_bit', {}).get('enable', false) }}
     - watch:
       - file: {{ bit.pkg }}-config
       - file: {{ bit.pkg }}-parsers
