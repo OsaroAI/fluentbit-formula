@@ -17,5 +17,6 @@ fluent_pkgrepo:
 {{ bit.pkg }}-pkg:
   pkg.installed:
     - name: {{ bit.pkg }}
+    - version: {{ bit.version }}
     - require:
       - fluent_pkgrepo
