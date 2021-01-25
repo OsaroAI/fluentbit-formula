@@ -3,6 +3,7 @@
 
 fluent_bit:
   pkg: fluent-bit
+  version: latest
   service:
     unit: '/lib/systemd/system/fluent-bit.service'
     conf: '/etc/td-agent-bit/fluent-bit.conf'
