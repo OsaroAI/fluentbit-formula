@@ -18,7 +18,12 @@ fluent_pkgrepo:
   pkg.installed:
     - name: {{ bit.pkg }}
     - version: {{ bit.version }}
-    - refresh: True
-    - only_upgrade: True
     - require:
       - fluent_pkgrepo
+
+{{ bit.pkg }}-pkg-upgrade:
+  pkg.uptodate:
+    - name: {{ bit.pkg }}
+    - refresh: True
+    - pkgs:
+      - {{ bit.pkg }}
