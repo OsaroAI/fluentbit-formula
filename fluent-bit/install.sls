@@ -21,9 +21,9 @@ fluent_pkgrepo:
     - require:
       - fluent_pkgrepo
 
-{{ bit.pkg }}-pkg-upgrade:
-  pkg.uptodate:
-    - name: {{ bit.pkg }}
-    - refresh: True
-    - pkgs:
-      - {{ bit.pkg }}
+# {{ bit.pkg }}-pkg-upgrade:
+#   pkg.uptodate:
+#     - name: {{ bit.pkg }}
+#     - refresh: True
+#     - pkgs:
+#       - {{ bit.pkg }}
