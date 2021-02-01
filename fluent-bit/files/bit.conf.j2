@@ -32,21 +32,22 @@
     # By default 'info' is set, that means it includes 'error' and 'warning'.
     Log_Level    {{ bit.config.log_level }}
 
-{% if 'storage.path' in bit.config %}
-    # File system Buffering config (must define storage.path)
+{%- if 'storage.path' in bit.config %}
+    # File System Buffering Config
     # more info here: https://docs.fluentbit.io/manual/administration/buffering-and-storage
+    # storage.path must be defined for this config
     # =========
-{% set storage_settings = [
+{%- set storage_settings = [
     'storage.path', 'storage.sync', 'storage.checksum',
     'storage.max_chunks_up', 'storage.backlog.mem_limit',
     'storage.metrics']
 %}
-{% for setting in storage_settings %}
-  {% if setting in bit.config %}
+{%- for setting in storage_settings %}
+  {%- if setting in bit.config %}
     {{ setting }}    {{ bit.config[setting] }}
-  {% endif %}
-{% endfor %}
-{% endif %}
+  {%- endif %}
+{%- endfor %}
+{%- endif %}
 
     # Parsers_File
     # ============
