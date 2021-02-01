@@ -32,7 +32,7 @@
     # By default 'info' is set, that means it includes 'error' and 'warning'.
     Log_Level    {{ bit.config.log_level }}
 
-{% if 'storage.path' in bit.config %}}
+{% if 'storage.path' in bit.config %}
     # File system Buffering config (must define storage.path)
     # more info here: https://docs.fluentbit.io/manual/administration/buffering-and-storage
     # =========
