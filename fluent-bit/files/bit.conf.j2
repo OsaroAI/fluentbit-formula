@@ -65,7 +65,7 @@
     {% macro plugin_config(plugins, type) -%}
     {%- for plugin in plugins %}
 [{{ type }}]
-      {%- for key, value in plugin.items() %}
+      {%- for key, value in sorted(plugin.items()) %}
     {{ key }} {{ value }}
       {%- endfor %}
     {%- endfor %}
