@@ -10,16 +10,16 @@ configure-{{ bit.pkg }}-service:
     - template: jinja
 
 {{ bit.pkg }}-service:
-  {% if pillar.get('fluent_bit', {}).get('enable', false) %}
+  {% if pillar.get('fluent_bit', {}).get('disable', false) %}
+  service.dead:
+    - name: {{ bit.pkg }}
+  {% else %}
   service.running:
     - name: {{ bit.pkg }}
-    - enable: {{ pillar.get('fluent_bit', {}).get('enable', false) }}
+    - enable: True
     - watch:
       - file: {{ bit.pkg }}-config
       - file: {{ bit.pkg }}-parsers
     - require:
       - file: configure-{{ bit.pkg }}-service
-  {% else %}
-  service.dead:
-    - name: {{ bit.pkg }}
   {% endif %}
