@@ -64,15 +64,12 @@
 
     {% macro plugin_config(plugins, type) -%}
     {%- for plugin in plugins %}
+      {%- if (plugin.get('Name').lower() == 'stackdriver' or plugin.get('name').lower() == 'stackdriver') and pillar.get('gcp', {}).get('logging', {}).get('disabled', false)  %}
+        {%- continue %}
+      {%- endif %}
 [{{ type }}]
       {%- for key, value in plugin | dictsort %}
-        {%- if key.lower() == 'name' and value.lower() == 'stackdriver' %}
-          {%- if not pillar.get('gcp', {}).get('logging', {}).get('disabled', false) %}
     {{ key }} {{ value }}
-          {%- endif %}
-        {%- else %}
-    {{ key }} {{ value }}
-        {%- endif %}
       {%- endfor %}
     {%- endfor %}
     {%- endmacro -%}
