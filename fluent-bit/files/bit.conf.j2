@@ -64,7 +64,7 @@
 
     {% macro plugin_config(plugins, type) -%}
     {%- for plugin in plugins %}
-      {%- if (plugin.get('Name', '').lower() == 'stackdriver' or plugin.get('name', '').lower() == 'stackdriver') and pillar.get('gcp', {}).get('logging', {}).get('disabled', false)  %}
+      {%- if (plugin.get('Name', '').lower() == 'stackdriver' or plugin.get('name', '').lower() == 'stackdriver') and not pillar['logging']['enabled'] %}
         {%- continue %}
       {%- endif %}
 [{{ type }}]
