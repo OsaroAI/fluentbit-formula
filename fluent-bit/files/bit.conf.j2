@@ -66,13 +66,13 @@
     {%- for plugin in plugins %}
 [{{ type }}]
       {%- for key, value in plugin | dictsort %}
-      {%- if key == 'stackdriver'%}
-        {%- if not pillar.get('gcp', {}).get('logging', {}).get('disabled', false) %}
+        {%- if key.lower() == 'name' and value.lower() == 'stackdriver' %}
+          {%- if not pillar.get('gcp', {}).get('logging', {}).get('disabled', false) %}
+    {{ key }} {{ value }}
+          {%- endif %}
+        {%- else %}
     {{ key }} {{ value }}
         {%- endif %}
-      {%- else %}
-    {{ key }} {{ value }}
-      {%- endif %}
       {%- endfor %}
     {%- endfor %}
     {%- endmacro -%}
