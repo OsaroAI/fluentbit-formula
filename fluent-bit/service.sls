@@ -10,7 +10,7 @@ configure-{{ bit.pkg }}-service:
     - template: jinja
 
 {{ bit.pkg }}-service:
-  {% if pillar.get('fluent_bit', {}).get('disable', false) %}
+  {% if pillar.get('fluent_bit', {}).get('disabled', false) %}
   service.dead:
     - name: {{ bit.pkg }}
   {% else %}
