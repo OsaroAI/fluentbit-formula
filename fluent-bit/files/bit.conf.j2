@@ -64,6 +64,13 @@
 
     {% macro plugin_config(plugins, type) -%}
     {%- for plugin in plugins %}
+      {%-
+        if type == 'OUTPUT'
+        and (plugin.get('Name', '').lower() == 'stackdriver' or plugin.get('name', '').lower() == 'stackdriver')
+        and not pillar['logging']['enabled']
+      %}
+        {%- continue %}
+      {%- endif %}
 [{{ type }}]
       {%- for key, value in plugin | dictsort %}
     {{ key }} {{ value }}
