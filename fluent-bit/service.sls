@@ -16,5 +16,8 @@ configure-{{ bit.pkg }}-service:
     - watch:
       - file: {{ bit.pkg }}-config
       - file: {{ bit.pkg }}-parsers
+      {%- for watch_file in bit.get('watch_files', []) %}
+      - file: {{ watch_file }}
+      {%- endfor %}
     - require:
       - file: configure-{{ bit.pkg }}-service
