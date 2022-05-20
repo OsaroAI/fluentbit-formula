@@ -8,7 +8,7 @@
 # Manually add the fluent-bit key as Salt does not update it
 add_fluent_bit_key:
   cmd.run:
-    - name: "wget -qO - https://packages.fluentbit.io/fluentbit.key | sudo apt-key add -"
+    - name: "wget -qO - https://packages.fluentbit.io/fluentbit.key | apt-key add -"
 
 fluent_pkgrepo:
   pkgrepo.managed:
