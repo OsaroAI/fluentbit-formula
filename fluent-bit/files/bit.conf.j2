@@ -67,7 +67,7 @@
       {%-
         if type == 'OUTPUT'
         and (plugin.get('Name', '').lower() == 'stackdriver' or plugin.get('name', '').lower() == 'stackdriver')
-        and not pillar['logging']['enabled']
+        and not salt['pillar.get']('logging:enabled', True)
       %}
         {%- continue %}
       {%- endif %}
